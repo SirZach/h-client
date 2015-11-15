@@ -3,6 +3,7 @@
 module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'hookah-client',
+    podModulePrefix: 'hookah-client/pods',
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
