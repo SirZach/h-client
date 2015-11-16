@@ -1,59 +1,23 @@
 import Ember from 'ember';
 import Highcharts from 'ember-highcharts/components/high-charts';
+import SocketOpener from 'hookah-client/mixins/socket-opener';
+import SocketInterfaceComponent from 'hookah-client/mixins/socket-interface-component';
 
-const { get, inject } = Ember;
+const { get } = Ember;
 
-export default Highcharts.extend({
-
-  socketService: inject.service('websockets'),
-
-  setupSocket: function () {
-    this._super(...arguments);
-
-    //192.168.1.8
-    // let socket = this.get('socketService').socketFor('ws://192.168.1.3:8888');
-    let socket = this.get('socketService').socketFor('ws://localhost:8001');
-
-
-    socket.on('open', function() {
-      this.attrs.serverConnected();
-      console.log('This will be called');
-    }, this);
-
-    socket.on('message', this.updateChart, this);
-
-    socket.on('close', function() {
-      this.attrs.serverDisconnected();
-      Ember.run.later(this, function() {
-        /*
-        * This will remove the old socket and try and connect to a new one on the same url.
-        * NOTE: that this does not need to be in a Ember.run.later this is just an example on
-        * how to reconnect every second.
-        */
-        socket.reconnect();
-      }, 1000);
-    }, this);
-  }.on('init'),
-
+export default Highcharts.extend(SocketOpener, SocketInterfaceComponent, {
   // Add some life
-  updateChart(messageEvent) {
-    let data = JSON.parse(messageEvent.data);
-    if (data.action === 'changeUser') {
-      this.attrs.changeUser(data.value);
-      return;
-    }
+  messageReceived(data) {
     let chart = get(this, 'chart');
     if (!chart.renderer.forExport) {
       let point = chart.series[0].points[0];
       point.update(data.value);
     }
   },
-  // chartMode: '', // empty, 'StockChart', or 'Map'
-  // chartOptions: {},
-  // chartData: [],
-  // theme: {}
+
   chartOptions: {
     chart: {
+      credits: false,
       type: 'gauge',
        plotBackgroundColor: null,
        plotBackgroundImage: null,
@@ -61,7 +25,7 @@ export default Highcharts.extend({
        plotShadow: false
      },
      title: {
-       text: 'Speedometer'
+       text: 'Hookah Meter'
      },
      pane: {
       startAngle: -150,
@@ -144,7 +108,7 @@ export default Highcharts.extend({
 
     series: [{
       name: 'Hookah',
-      data: [80],
+      data: [0],
       tooltip: {
         valueSuffix: ' %'
       }

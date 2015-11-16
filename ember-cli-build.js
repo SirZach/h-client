@@ -7,8 +7,7 @@ module.exports = function(defaults) {
     // Add options here
     emberHighCharts: {
       includeHighCharts: true,
-      includeHighChartsMore: true,
-      includeModules: ['exporting']
+      includeHighChartsMore: true
     }
   });
 
