@@ -4,20 +4,21 @@
   bottom: 5px;
   height: 50px;
   width: 100px;
+  border: 2px solid #fff;
 }
 
-.current-user.pink {
+.pink {
   background-color: #E91E63;
 }
-.current-user.red {
+.red {
   background-color: #F44336;
 }
-.current-user.orange {
+.orange {
   background-color: #FF9800;
 }
-.current-user.green {
+.green {
   background-color: #4CAF50;
 }
-.current-user.blue {
+.blue {
   background-color: #2196F3;
 }
