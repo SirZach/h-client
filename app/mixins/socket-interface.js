@@ -1,8 +1,10 @@
 import Ember from 'ember';
 
-const { Mixin } = Ember;
+const { Mixin, inject, get } = Ember;
 
 export default Mixin.create({
+  hookahMeta: inject.service(),
+
   actions: {
     changeUser(userIndex) {
       this.notifications.addNotification({
@@ -10,10 +12,12 @@ export default Mixin.create({
         type: 'success',
         autoClear: true
       });
+
+      get(this, 'hookahMeta').changeUser();
     },
 
     changeVisual() {
-      
+
     },
 
     hookahConnected() {
