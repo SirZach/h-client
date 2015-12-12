@@ -18,13 +18,15 @@ export default Route.extend({
 
   actions: {
     changeUser(userIndex) {
+      let hookahMeta = get(this, 'hookahMeta');
+
+      hookahMeta.changeUser(userIndex);
+
       this.notifications.addNotification({
-        message: 'Changed User',
+        message: `Changed User to ${get(hookahMeta, 'currentUser').capitalize()}`,
         type: 'success',
         autoClear: true
       });
-
-      get(this, 'hookahMeta').changeUser(userIndex);
     },
 
     changeView() {
