@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { Service, computed, get } = Ember;
+const { Service, computed, get, set } = Ember;
 
 export default Service.extend({
   users: ['pink', 'red', 'orange', 'green', 'blue'],
@@ -11,8 +11,8 @@ export default Service.extend({
 
   visualizationIndex: 0,
 
-  changeUser() {
-    this.incrementProperty('userIndex');
+  changeUser(userIndex) {
+    set(this, 'userIndex', userIndex);
   },
 
   changeVisualization() {

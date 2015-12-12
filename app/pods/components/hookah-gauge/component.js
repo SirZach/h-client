@@ -1,14 +1,14 @@
 import Ember from 'ember';
 import Highcharts from 'ember-highcharts/components/high-charts';
-import SocketOpener from 'hookah-client/mixins/socket-opener';
 import SocketInterfaceComponent from 'hookah-client/mixins/socket-interface-component';
 
 const { get } = Ember;
 
-export default Highcharts.extend(SocketOpener, SocketInterfaceComponent, {
+export default Highcharts.extend(SocketInterfaceComponent, {
   // Add some life
   messageReceived(data) {
     let chart = get(this, 'chart');
+
     if (!chart || !chart.renderer) {
       return;
     }

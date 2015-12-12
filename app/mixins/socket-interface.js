@@ -18,11 +18,9 @@ export default Mixin.create({
 
     changeView() {
       let hookahMeta = get(this, 'hookahMeta');
-      hookahMeta.changeVisualization();
+      // hookahMeta.changeVisualization();
 
-      run.schedule(this, function() {
-        this.transitionToRoute(get(hookahMeta, 'currentVisualization'));
-      });
+      // this.transitionToRoute(get(hookahMeta, 'currentVisualization'));
     },
 
     hookahConnected() {

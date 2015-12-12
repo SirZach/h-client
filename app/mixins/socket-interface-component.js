@@ -1,23 +1,17 @@
 import Ember from 'ember';
 
-const { Mixin } = Ember;
+const { Mixin, inject, get } = Ember;
 
 export default Mixin.create({
-  actions: {
-    serverConnected() {
-      this.attrs.serverConnected();
-    },
+  socketManager: inject.service(),
 
-    serverDisconnected() {
-      this.attrs.serverDisconnected();
-    },
+  setup: function() {
+    let socketManager = get(this, 'socketManager');
 
-    changeUser() {
-      this.attrs.changeUser();
-    },
-
-    changeView() {
-      this.attrs.changeView();
-    }
-  }
+    socketManager.on('serverConnected', this.attrs.serverConnected);
+    socketManager.on('serverDisconnected', this.attrs.serverDisconnected);
+    socketManager.on('changeUser', this.attrs.changeUser);
+    socketManager.on('changeView', this.attrs.changeView);
+    socketManager.on('messageReceived', this.messageReceived.bind(this));
+  }.on('didInsertElement')
 });
