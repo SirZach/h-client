@@ -4,24 +4,16 @@ import SocketInterfaceComponent from 'hookah-client/mixins/socket-interface-comp
 const { Component, inject, get, $ } = Ember;
 
 export default Component.extend(SocketInterfaceComponent, {
+  hookahMeta: inject.service(),
+
   messageReceived(data) {
     let pull = data.value;
-    let bc = 'pink';
+    let hookahMeta = get(this, 'hookahMeta');
 
-    if (pull >= 20 && pull < 40) {
-      bc = 'red';
-    } else if (pull >= 40 && pull < 60) {
-      bc = 'orange';
-    } else if (pull >= 60 && pull < 80) {
-      bc = 'green';
-    } else if (pull >= 80){
-      bc = 'blue';
-    }
-
-    $('body').css('background-color', bc);
+    $('body').css('background-color', hookahMeta.pullColor(pull));
   },
 
   revert: function() {
-    $('body').css('background-color', "#fff");
+    $('body').css('background-color', '#fff');
   }.on('willDestroyElement')
 });

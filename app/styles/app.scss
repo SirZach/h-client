@@ -1,0 +1,39 @@
+@import 'color-palette';
+
+.current-user {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  height: 56px;
+  width: 56px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  md-icon {
+    position: relative;
+    top: 16px;
+    left: 16px;
+  }
+}
+
+.highcharts-wrapper {
+  height: 100vh;
+}
+
+.pink {
+  background-color: color($color-pink, '500');
+}
+.red {
+  background-color: color($color-red, '500');
+}
+.orange {
+  background-color: color($color-orange, '500');
+}
+.green {
+  background-color: color($color-green, '500');
+}
+.blue {
+  background-color: color($color-blue, '500');
+}
+
+
+@import 'ember-paper';

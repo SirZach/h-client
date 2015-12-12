@@ -31,7 +31,7 @@ export default Service.extend(Evented, {
       * how to reconnect every second.
       */
       socket.reconnect();
-    }, 1000);
+    }, 2000);
   },
 
   _messageReceived(messageEvent) {
