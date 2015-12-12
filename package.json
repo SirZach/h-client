@@ -37,6 +37,7 @@
     "ember-disable-proxy-controllers": "^1.0.1",
     "ember-export-application-global": "^1.0.4",
     "ember-highcharts": "0.2.1",
+    "ember-route-action-helper": "0.2.0",
     "ember-websockets": "1.2.4",
     "glob": "^4.5.3",
     "morgan": "^1.6.1"

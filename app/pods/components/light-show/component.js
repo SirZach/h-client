@@ -5,7 +5,6 @@ const { Component, inject, get, $ } = Ember;
 
 export default Component.extend(SocketInterfaceComponent, {
   messageReceived(data) {
-    console.log('changing background');
     let pull = data.value;
     let bc = 'pink';
 

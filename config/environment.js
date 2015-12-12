@@ -5,6 +5,9 @@ module.exports = function(environment) {
     modulePrefix: 'hookah-client',
     podModulePrefix: 'hookah-client/pods',
     environment: environment,
+    contentSecurityPolicy: {
+      'connect-src': "'self' ws://*"
+    },
     baseURL: '/',
     locationType: 'auto',
     // websocketLocation: 'ws://192.168.1.3:8888',
