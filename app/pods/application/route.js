@@ -8,11 +8,13 @@ export default Route.extend({
   socketManager: inject.service('socket-manager'),
   hookahMeta: inject.service(),
 
-  afterModel() {
+  model() {
     let socket = get(this, 'socketService').socketFor(ENV.websocketLocation);
 
     get(this, 'socketManager').setup(socket);
+  },
 
+  redirect() {
     this.transitionTo('gauge');
   },
 
