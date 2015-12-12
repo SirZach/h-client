@@ -11,5 +11,7 @@ export default Route.extend({
     let socket = get(this, 'socketService').socketFor(ENV.websocketLocation);
 
     get(this, 'socketManager').setup(socket);
+
+    this.transitionTo('gauge');
   }
 })
