@@ -16,13 +16,12 @@ export default Mixin.create({
   }.on('didInsertElement'),
 
   teardown: function() {
-    console.log('unsubscribing');
     let socketManager = get(this, 'socketManager');
 
-    socketManager.off('serverConnected', this, this.attrs.serverConnected);
-    socketManager.off('serverDisconnected', this, this.attrs.serverDisconnected);
-    socketManager.off('changeUser', this, this.attrs.changeUser);
-    socketManager.off('changeView', this, this.attrs.changeView);
-    socketManager.off('messageReceived', this, this.messageReceived);
+    socketManager.off('serverConnected');
+    socketManager.off('serverDisconnected');
+    socketManager.off('changeUser');
+    socketManager.off('changeView');
+    socketManager.off('messageReceived');
   }.on('willDestroyElement')
 });
