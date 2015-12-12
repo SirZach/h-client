@@ -5,10 +5,18 @@ const { Service, computed, get } = Ember;
 export default Service.extend({
   users: ['pink', 'red', 'orange', 'green', 'blue'],
 
+  visualizations: ['gauge', 'lightshow'],
+
   userIndex: 0,
+
+  visualizationIndex: 0,
 
   changeUser() {
     this.incrementProperty('userIndex');
+  },
+
+  changeVisualization() {
+    this.incrementProperty('visualizationIndex');
   },
 
   currentUser: computed('users.[]', 'userIndex', function() {
@@ -16,5 +24,12 @@ export default Service.extend({
     let userIndex = get(this, 'userIndex');
 
     return users[userIndex % users.length];
+  }),
+
+  currentVisualization: computed('visualizations.[]', 'visualizationIndex', function() {
+    let visualizations = get(this, 'visualizations');
+    let visualizationIndex = get(this, 'visualizationIndex');
+
+    return visualizations[visualizationIndex % visualizations.length];
   })
 });

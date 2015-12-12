@@ -9,6 +9,10 @@ export default Highcharts.extend(SocketOpener, SocketInterfaceComponent, {
   // Add some life
   messageReceived(data) {
     let chart = get(this, 'chart');
+    if (!chart || !chart.renderer) {
+      return;
+    }
+
     if (!chart.renderer.forExport) {
       let point = chart.series[0].points[0];
       point.update(data.value);
@@ -26,6 +30,11 @@ export default Highcharts.extend(SocketOpener, SocketInterfaceComponent, {
      },
      title: {
        text: 'Hookah Meter'
+     },
+     plotOptions: {
+       series: {
+         enableMouseTracking: false
+       }
      },
      pane: {
       startAngle: -150,

@@ -20,5 +20,11 @@ export default Component.extend(SocketOpener, SocketInterfaceComponent, {
     }
 
     $('body').css('background-color', bc);
+  },
+
+  willDestroy() {
+    this._super(...arguments);
+
+    $('body').css('background-color', "#fff");
   }
 });

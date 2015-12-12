@@ -7,7 +7,7 @@ module.exports = function(environment) {
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
-    websocketLocation: 'ws://localhost:8001',
+    websocketLocation: 'ws://192.168.1.3:8888',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build

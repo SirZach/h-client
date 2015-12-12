@@ -14,6 +14,10 @@ export default Mixin.create({
 
     changeUser() {
       this.attrs.changeUser();
+    },
+
+    changeView() {
+      this.attrs.changeView();
     }
   }
 });

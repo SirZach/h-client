@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { Mixin, inject, get } = Ember;
+const { Mixin, inject, get, run } = Ember;
 
 export default Mixin.create({
   hookahMeta: inject.service(),
@@ -16,8 +16,13 @@ export default Mixin.create({
       get(this, 'hookahMeta').changeUser();
     },
 
-    changeVisual() {
+    changeView() {
+      let hookahMeta = get(this, 'hookahMeta');
+      hookahMeta.changeVisualization();
 
+      run.schedule(this, function() {
+        this.transitionToRoute(get(hookahMeta, 'currentVisualization'));
+      });
     },
 
     hookahConnected() {
