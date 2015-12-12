@@ -1,11 +1,11 @@
 import Ember from 'ember';
-import SocketOpener from 'hookah-client/mixins/socket-opener';
 import SocketInterfaceComponent from 'hookah-client/mixins/socket-interface-component';
 
 const { Component, inject, get, $ } = Ember;
 
-export default Component.extend(SocketOpener, SocketInterfaceComponent, {
+export default Component.extend(SocketInterfaceComponent, {
   messageReceived(data) {
+    console.log('changing background');
     let pull = data.value;
     let bc = 'pink';
 
@@ -22,9 +22,7 @@ export default Component.extend(SocketOpener, SocketInterfaceComponent, {
     $('body').css('background-color', bc);
   },
 
-  willDestroy() {
-    this._super(...arguments);
-
+  revert: function() {
     $('body').css('background-color', "#fff");
-  }
+  }.on('willDestroyElement')
 });

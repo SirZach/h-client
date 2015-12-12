@@ -13,14 +13,14 @@ export default Mixin.create({
         autoClear: true
       });
 
-      get(this, 'hookahMeta').changeUser();
+      get(this, 'hookahMeta').changeUser(userIndex);
     },
 
     changeView() {
       let hookahMeta = get(this, 'hookahMeta');
-      // hookahMeta.changeVisualization();
+      hookahMeta.changeVisualization();
 
-      // this.transitionToRoute(get(hookahMeta, 'currentVisualization'));
+      this.transitionToRoute(get(hookahMeta, 'currentVisualization'));
     },
 
     hookahConnected() {
